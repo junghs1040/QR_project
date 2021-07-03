@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mintchoco1_description</name>
+  <version>1.0.0</version>
+  <description>The mintchoco1_description package</description>
+
+  <maintainer email="junghs1040@naver.com">seok2</maintainer>
+
+  <license>TODO</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>joint_state_publisher</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>xacro</depend>
+  <depend>urdf</depend>
+
+</package>

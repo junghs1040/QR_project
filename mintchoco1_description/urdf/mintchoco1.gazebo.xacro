@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<robot name="mintchoco1" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/mintchoco1</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+<!-- Base_link : Black -->
+  <gazebo reference="base_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+<!-- Link1 : Black -->
+  <gazebo reference="LF_link1">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="LB_link1">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="RF_link1">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="RB_link1">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+<!-- Link2 : Red -->
+  <gazebo reference="LF_link2">
+    <material>Gazebo/RedBright</material>
+  </gazebo>
+
+  <gazebo reference="LB_link2">
+    <material>Gazebo/RedBright</material>
+  </gazebo>
+
+  <gazebo reference="RF_link2">
+    <material>Gazebo/RedBright</material>
+  </gazebo>
+
+  <gazebo reference="RB_link2">
+    <material>Gazebo/RedBright</material>
+  </gazebo>
+<!-- Link3 : DarkGrey -->
+  <gazebo reference="LF_link3">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="LB_link3">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="RF_link3">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="RB_link3">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+</robot>

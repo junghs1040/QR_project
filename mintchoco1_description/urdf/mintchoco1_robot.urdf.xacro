@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="mintchoco1" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Import Rviz colors -->
+  <!--<xacro:include filename="$(find mintchoco1_description)/urdf/materials.xacro" />-->
+
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="$(find mintchoco1_description)/urdf/mintchoco1.gazebo.xacro" />
+
+  <!-- Import Transmission -->
+  <xacro:include filename="$(find mintchoco1_description)/urdf/mintchoco1.transmission.xacro" />
+
+  <!-- Import URDF -->
+  <xacro:include filename="$(find mintchoco1_description)/urdf/mintchoco1.urdf.xacro" />
+
+</robot>

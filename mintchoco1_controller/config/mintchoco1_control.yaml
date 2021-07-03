@@ -1,0 +1,69 @@
+mintchoco1:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 25
+
+  # Position Controllers - joint1 ---------------------------------------
+  LF_joint1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LF_joint1
+    pid: {p: 180, d: 0.9, i: 20} 
+
+  LB_joint1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LB_joint1
+    pid: {p: 180, d: 0.9, i: 20}
+
+  RF_joint1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RF_joint1
+    pid: {p: 180, d: 0.9, i: 20}
+
+  RB_joint1_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RB_joint1
+    pid: {p: 180, d: 0.9, i: 20}
+
+  # Position Controllers - joint2 ---------------------------------------
+  LF_joint2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LF_joint2
+    pid: {p: 180, d: 0.9, i: 20} 
+
+  LB_joint2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LB_joint2
+    pid: {p: 180, d: 0.9, i: 20}
+
+  RF_joint2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RF_joint2
+    pid: {p: 180, d: 0.9, i: 20}
+
+  RB_joint2_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RB_joint2
+    pid: {p: 180, d: 0.9, i: 20}
+
+  # Position Controllers - joint3 ---------------------------------------
+  LF_joint3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LF_joint3
+    pid: {p: 180, d: 0.9, i: 20} 
+
+  LB_joint3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: LB_joint3
+    pid: {p: 180, d: 0.9, i: 20}
+
+  RF_joint3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RF_joint3
+    pid: {p: 180, d: 0.9, i: 20}
+
+  RB_joint3_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: RB_joint3
+    pid: {p: 180, d: 0.9, i: 20}
+
