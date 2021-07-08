@@ -2,7 +2,7 @@
 
 this project is ongoing project!
 
-< Quick Start>
+#### < Quick Start>
 ### 1. load the robot mintchoco1 to gazebo environment
 <pre>
 <code>
