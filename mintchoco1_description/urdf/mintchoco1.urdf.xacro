@@ -2,13 +2,13 @@
 <robot name="mintchoco1" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Fix the base_link -->
-  <link name="world"/>
+  <!--link name="world"/-->
 
-  <joint name="fixed" type="fixed">
+  <!--joint name="fixed" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
      <origin xyz="0.0 0.0 0.005" rpy="0 0 0" />
-  </joint>
+  </joint-->
 
   <link name="base_link">
     <inertial>
@@ -104,8 +104,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="LF_link2">
@@ -162,8 +163,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="LF_link3">
@@ -220,8 +222,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="RF_link1">
@@ -278,8 +281,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="RF_link2">
@@ -336,8 +340,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="RF_link3">
@@ -394,8 +399,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="LB_link1">
@@ -452,8 +458,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="LB_link2">
@@ -510,8 +517,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="LB_link3">
@@ -568,8 +576,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="RB_link1">
@@ -626,8 +635,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="RB_link2">
@@ -684,8 +694,9 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
   <link
     name="RB_link3">
@@ -742,7 +753,8 @@
     <limit
       lower="-3.14"
       upper="3.14"
-      effort="0"
-      velocity="0" />
+      effort="1"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
   </joint>
 </robot>

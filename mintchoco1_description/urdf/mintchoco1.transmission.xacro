@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="mintch0co1" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="mintchoco1" xmlns:xacro="http://ros.org/wiki/xacro">
 
 <!-- joint1 Transmission -->
   <transmission name="LF_joint1">
