@@ -1,9 +1,9 @@
-HI! this is my Quadruped robot making project
+#HI! this is my Quadruped robot making project
 
 this project is ongoing project!
 
 < Quick Start>
-
+###1. load the robot mintchoco1 to gazebo environment
 <pre>
 <code>
 $ roslaunch mintchoco1_gazebo mintchoco1_world.launch
