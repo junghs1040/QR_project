@@ -1,0 +1,15 @@
+/* Author : Hwan-Seok Jung , <Mintchoco Jelly Robotics Lab> */
+
+#include "mintchoco1_controller/mintchoco1_controller.hpp"
+
+using namespace mintchoco1_controller;
+
+Mintchoco1Controller::Mintchoco1Controller()
+: node_handle_(""),
+  priv_node_handle_("")
+{
+    
+    initPublisher();
+    initSubscriber();
+    initServer();
+}

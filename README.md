@@ -11,4 +11,7 @@ $ roslaunch mintchoco1_gazebo mintchoco1_world.launch
 </pre>
 
 ![Screenshot from 2021-07-07 16-22-36](https://user-images.githubusercontent.com/19335771/124845945-bfdd2700-dfd2-11eb-81da-72bb4c58b4a7.png)
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3dbcedaa50f50b6632b24edc8f9b342fa51b098
