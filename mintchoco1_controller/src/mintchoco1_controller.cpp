@@ -13,3 +13,16 @@ Mintchoco1Controller::Mintchoco1Controller()
     initSubscriber();
     initServer();
 }
+
+
+int main(int argc, char **argv)
+{
+    ros::init(argc,argv,"mintcoco1_controller");
+
+    while (ros::ok())
+    {
+        ros::spinOnce();
+        //loop_rate.sleep();
+    }
+    return 0;
+}

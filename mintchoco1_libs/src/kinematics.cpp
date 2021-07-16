@@ -1,9 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <string>
 #include "mintchoco1_libs/kinematics.hpp"
 
-std::vector<double> Kinematics::solveInverseKinematics(std::vector<double> position_info)
+using namespace kinematics;
+
+std::vector<double> Kinematics::solveGeometricInverseKinematics(std::vector<double> position_info)
 {
 	std::vector<double> joint_state;
 	double theta1, theta2, theta3;

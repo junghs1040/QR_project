@@ -1,5 +1,5 @@
-#ifndef ROBOT_H
-#define ROBOT_H
+#ifndef KINEMATICS_H_
+#define KINEMATICS_H_
 
 #include <iostream>
 #include <vector>
@@ -7,7 +7,8 @@
 #include <cmath>
 #include <Eigen/Dense>
 
-
+namespace kinematics 
+{
 class Kinematics
 {
     public:
@@ -15,7 +16,7 @@ class Kinematics
         ~Kinematics();      // destructor
 
         std::vector<double> joint_state_;
-        std::vector<double> solveInverseKinematics(std::vector<double> position_info);
+        std::vector<double> solveGeometricInverseKinematics(std::vector<double> position_info);
 
 
     private:
@@ -23,6 +24,6 @@ class Kinematics
 
 
 };
-
+}
 
 #endif

@@ -4,6 +4,7 @@
 #define MINTCHOCO1_CONTROLLER_H_
 
 #include <ros/ros.h>
+#include <std_srvs/Trigger.h>
 
 namespace mintchoco1_controller
 {
@@ -12,6 +13,9 @@ class Mintchoco1Controller
     public:
         Mintchoco1Controller();
         ~Mintchoco1Controller();
+
+    bool moveCommandMsgCallback(std_srvs::Trigger::Request &req,
+                               std_srvs::Trigger::Response &res);
 
     private:
         /********************************************
@@ -38,7 +42,7 @@ class Mintchoco1Controller
         /********************************************
         ** ROS Servers and Callback Functions
         *********************************************/
-        
+        ros::ServiceServer move_command_server_;
 
 
 };
