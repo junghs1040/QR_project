@@ -2,10 +2,14 @@ cmake_minimum_required(VERSION 3.0.2)
 project(mintchoco1_libs)
 
 find_package(catkin REQUIRED COMPONENTS
+  message_generation
   roscpp
+  std_msgs
 )
 
 find_package(Eigen3 REQUIRED)
+
+generate_messages(DEPENDENCIES std_msgs)
 
 catkin_package(
   INCLUDE_DIRS include

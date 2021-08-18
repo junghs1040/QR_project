@@ -2,32 +2,82 @@
 
 using namespace mintchoco1;
 
-Mintchoco1::Mintchoco1()
-    :node_handle_(""),
-     priv_node_handle_("~")
+Mintchoco1::Mintchoco1(ros::NodeHandle *nh, ros::NodeHandle *nh_priv)
 {
+    double loop_rate = 100.0;
     std::string joint_control_topic = "joint_group_position_controller/command";
-    //number received by controller check and choice the walking pattern
-    //store the trajectory information and publish that information
+    //*number received by controller check and choice the walking pattern
+    //*store the trajectory information and publish that information
     
-    joint_command_publisher = node_handle_.advertise<trajectory_msgs::JointTrajectory>("joint_trajectory", 100);
-    
-    joint_names_ = {"LF_joint1","LF_joint2","LF_joint3","LB_joint1","LB_joint2","LB_joint3",
-                    "RF_joint1","RF_joint2","RF_joint3","RB_joint1","RB_joint2","RB_joint3",};
-    //TODO use the urdf.h source file to get the joint name form URDF
+    teleop_input_subscriber = nh->subscribe("cmd_vel", 1000, &Mintchoco1::msgCallback, this);
+    //Joint trajectory publisher to  Gazebo
+    joint_command_publisher = nh->advertise<trajectory_msgs::JointTrajectory>("joint_trajectory", 100);
+
+    joint_state_publisher = nh->advertise<sensor_msgs::JointState>("joint_states", 1);
+    //TODO : contact info publisher
+    //contact_info_publisher = nh->advertise<champ_msgs::ContactsStamped>("foot_contacts", 1);
+
+    loop_timer =nh_priv->createTimer(ros::Duration(1/loop_rate), &Mintchoco1::controlLoop,this);
+
 }
 
 Mintchoco1::~Mintchoco1()
 {}
 
-void Mintchoco1::controlLoop()
+void Mintchoco1::controlLoop(const ros::TimerEvent& event)
 {
     std::vector<double> target_joint_position;
-    float target_foot_position[4];
-    trajectory_generator_.something();
-
+    std::vector<double> target_foot_position;
+    if (order == 0)
+    {
+      trajectory_generator_.stanceState(target_foot_position);
+    }
     kinematics_.solveGeometricInverseKinematics(target_joint_position);
 
+    //publishJoints(target_joint_position)
+}
+
+void Mintchoco1::msgCallback(const geometry_msgs::Twist::ConstPtr& msg)
+{
+  float x = msg->linear.x;
+  float y = msg->linear.y;
+  float z = msg->linear.z;
+ 
+  if ( x > 0 && y == 0 && z == 0 )
+    {
+      ROS_INFO("go straight");
+      order = 1;
+    }
+  if ( x < 0 && y == 0 && z == 0 )
+    {
+      ROS_INFO("go back");
+      order = 2;
+    }
+  if ( x == 0 && y == 0 && z == 0 )
+    {
+      ROS_INFO("stop");
+      order = 0;
+    }
+  if ( x == 0 && y > 0 && z == 0 )
+    {
+      ROS_INFO("go right");
+      order = 3;
+    }
+  if ( x == 0 && y < 0 && z == 0 )
+    {
+      ROS_INFO("go left");
+      order = 4;
+    }
+  if ( x == 0 && y == 0 && z > 0 )
+    {
+      ROS_INFO("go up");
+      order = 5;
+    }
+  if ( x == 0 && y == 0 && z < 0 )
+    {
+      ROS_INFO("go down");
+      order = 6;
+    }
 }
 
 void Mintchoco1::publishJoints(float target_joint_position[12])
@@ -51,23 +101,3 @@ void Mintchoco1::publishJoints(float target_joint_position[12])
 
 
 
-int main(int argc, char **argv)
-{
-    ros::init(argc, argv, "mintchoco1");
-    Mintchoco1 mintcho;
-    trajectory_generator::TrajectoryGenerator tra;
-    kinematics::Kinematics invk;
-
-    ROS_INFO("For now we can publish quadruped robot leg's joint trajectory! ");
-
-    double t = ros::Time::now().toSec();
-    double ho;
-    std::string joint_control_topic = "joint_group_position_controller/command";
-    
-    std::vector<double> position_info = tra.straightLineStanceTrajectory(t,ho);
-    std::vector<double> joint_info = invk.solveGeometricInverseKinematics(position_info);
-    
-    // publiher setting - if we service call at the controller
-    // and callback function called this node to publish joint trajectory
-
-}

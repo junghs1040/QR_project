@@ -16,6 +16,7 @@ class TrajectoryGenerator
         TrajectoryGenerator();
         ~TrajectoryGenerator();
 
+        std::vector<double> stanceState(std::vector<double> position_info);
         std::vector<double> sinWaveSwingTrajectory(double time);
         std::vector<double> straightLineStanceTrajectory(double time, double duration);
 
