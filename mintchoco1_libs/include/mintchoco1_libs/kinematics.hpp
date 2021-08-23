@@ -7,8 +7,7 @@
 #include <cmath>
 #include <Eigen/Dense>
 
-namespace kinematics 
-{
+
 class Kinematics
 {
     public:
@@ -24,6 +23,6 @@ class Kinematics
 
 
 };
-}
+
 
 #endif

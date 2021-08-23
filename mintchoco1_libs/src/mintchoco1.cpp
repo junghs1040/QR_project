@@ -1,6 +1,5 @@
 #include "mintchoco1_libs/mintchoco1.hpp"
 
-using namespace mintchoco1;
 
 Mintchoco1::Mintchoco1(ros::NodeHandle *nh, ros::NodeHandle *nh_priv)
 {
@@ -11,7 +10,7 @@ Mintchoco1::Mintchoco1(ros::NodeHandle *nh, ros::NodeHandle *nh_priv)
     
     teleop_input_subscriber = nh->subscribe("cmd_vel", 1000, &Mintchoco1::msgCallback, this);
     //Joint trajectory publisher to  Gazebo
-    joint_command_publisher = nh->advertise<trajectory_msgs::JointTrajectory>("joint_trajectory", 100);
+    joint_command_publisher = nh_priv->advertise<trajectory_msgs::JointTrajectory>("joint_trajectory", 100);
 
     joint_state_publisher = nh->advertise<sensor_msgs::JointState>("joint_states", 1);
     //TODO : contact info publisher
@@ -28,9 +27,10 @@ void Mintchoco1::controlLoop(const ros::TimerEvent& event)
 {
     std::vector<double> target_joint_position;
     std::vector<double> target_foot_position;
-    if (order == 0)
+    if (order == 0 || 5 || 6)
     {
-      trajectory_generator_.stanceState(target_foot_position);
+      
+      locomotion_controller.stanceState(order);
     }
     kinematics_.solveGeometricInverseKinematics(target_joint_position);
 
@@ -46,17 +46,17 @@ void Mintchoco1::msgCallback(const geometry_msgs::Twist::ConstPtr& msg)
   if ( x > 0 && y == 0 && z == 0 )
     {
       ROS_INFO("go straight");
-      order = 1;
+      order = 1; 
     }
   if ( x < 0 && y == 0 && z == 0 )
     {
       ROS_INFO("go back");
-      order = 2;
+      order = 2; 
     }
   if ( x == 0 && y == 0 && z == 0 )
     {
       ROS_INFO("stop");
-      order = 0;
+      order = 0; 
     }
   if ( x == 0 && y > 0 && z == 0 )
     {
@@ -78,6 +78,12 @@ void Mintchoco1::msgCallback(const geometry_msgs::Twist::ConstPtr& msg)
       ROS_INFO("go down");
       order = 6;
     }
+  if ( order = 0 || 5 || 6)
+  {
+    base_control = true;
+  }
+  else 
+    base_control = false;
 }
 
 void Mintchoco1::publishJoints(float target_joint_position[12])
@@ -88,8 +94,13 @@ void Mintchoco1::publishJoints(float target_joint_position[12])
     
     trajectory_msgs::JointTrajectoryPoint point;
     point.positions.resize(12);
+    if (base_control)
+    {
+      point.time_from_start = ros::Duration(2.0);
+    }
+    else 
+      point.time_from_start = ros::Duration(1.0/100.0);
 
-    point.time_from_start = ros::Duration(1.0/60.0);
     for (int i=0; i<12; i++)
     {
         point.positions[i] = target_joint_position[i];

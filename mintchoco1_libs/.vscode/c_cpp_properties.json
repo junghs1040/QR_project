@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "/opt/ros/melodic/include",
                 "/usr/include/eigen3",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/include/mintchoco1_libs"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

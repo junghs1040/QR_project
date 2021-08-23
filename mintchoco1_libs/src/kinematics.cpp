@@ -1,6 +1,11 @@
 #include "mintchoco1_libs/kinematics.hpp"
 
-using namespace kinematics;
+
+
+Kinematics::Kinematics()
+{}
+Kinematics::~Kinematics()
+{}
 
 std::vector<double> Kinematics::solveGeometricInverseKinematics(std::vector<double> position_info)
 {

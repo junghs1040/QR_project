@@ -1,15 +1,10 @@
 #include "mintchoco1_libs/trajectory_generator.hpp"
 
-using namespace trajectory_generator;
 
-std::vector<double> TrajectoryGenerator::stanceState(std::vector<double> position_info)
-{
-    std::vector<double> info = position_info;
-
-
-    
-    //solveGeometricInverseKinematics();
-}
+TrajectoryGenerator::TrajectoryGenerator()
+{}
+TrajectoryGenerator::~TrajectoryGenerator()
+{}
 
 std::vector<double> TrajectoryGenerator::sinWaveSwingTrajectory(double time)
 {
