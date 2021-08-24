@@ -7,29 +7,28 @@ Kinematics::Kinematics()
 Kinematics::~Kinematics()
 {}
 
-std::vector<double> Kinematics::solveGeometricInverseKinematics(std::vector<double> position_info)
+std::vector<float> Kinematics::solveGeometricInverseKinematics(std::vector<double> position_info)
 {
-	std::vector<double> joint_state;
-	double theta1, theta2, theta3;
-	double link1 = 78.96;
-	double link2 = 187.96;
-	double link3 = 200.00;
+	float theta1, theta2, theta3;
+	float link1 = 78.96;
+	float link2 = 187.96;
+	float link3 = 200.00;
 
-	double x = position_info[0];
-	double y = position_info[1];
-	double z = position_info[2];
+	float x = position_info[0];
+	float y = position_info[1];
+	float z = position_info[2];
 
-	double F = sqrt(z*z + y * y - 78.0 * 78.0);
-	double G = 12.3 + sqrt(z*z + y * y - 78.0 * 78.0);
-	double H = sqrt(G*G + x * x);
-    double alpa = asin(x/(sqrt(x*x+G*G)));
+	float F = sqrt(z*z + y * y - 78.0 * 78.0);
+	float G = 12.3 + sqrt(z*z + y * y - 78.0 * 78.0);
+	float H = sqrt(G*G + x * x);
+    float alpa = asin(x/(sqrt(x*x+G*G)));
 
 	theta1 = atan2(F, 78.0) - atan2(abs(z), abs(y));
 
-	double D = -(H*H-link2*link2-link3*link3)/(2*link2*link3);
+	float D = -(H*H-link2*link2-link3*link3)/(2*link2*link3);
 
 	theta3 = acos(D) - 3.14/2 - 0.1603;
-	double alpha, beta;
+	float alpha, beta;
 	//alpha = atan2(x, G);
     alpha = atan2(G, x);
 	beta = atan(link3*sin(3.14 / 2 - 0.1603 - theta3) / (link2 + link3 * cos(3.14 / 2 - 0.1603 - theta3)));

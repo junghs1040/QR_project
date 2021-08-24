@@ -14,8 +14,8 @@ class Kinematics
         Kinematics();       // constructor
         ~Kinematics();      // destructor
 
-        std::vector<double> joint_state_;
-        std::vector<double> solveGeometricInverseKinematics(std::vector<double> position_info);
+        std::vector<float> joint_state_;
+        std::vector<float> solveGeometricInverseKinematics(std::vector<double> position_info);
 
 
     private:

@@ -6,6 +6,9 @@
 #include <string>
 #include <cmath>
 #include <Eigen/Dense>
+#include "kinematics.hpp"
+#include "ros/ros.h"
+
 
 
 class Locomotion
@@ -13,10 +16,10 @@ class Locomotion
     public:
         Locomotion();       // constructor
         ~Locomotion();      // destructor
-
-        std::vector<double> stanceState(int order);
+        std::vector<float> stanceState(int order);
 
     private:
+        Kinematics kinematics;
 
 
 

@@ -10,13 +10,13 @@ Mintchoco1::Mintchoco1(ros::NodeHandle *nh, ros::NodeHandle *nh_priv)
     
     teleop_input_subscriber = nh->subscribe("cmd_vel", 1000, &Mintchoco1::msgCallback, this);
     //Joint trajectory publisher to  Gazebo
-    joint_command_publisher = nh_priv->advertise<trajectory_msgs::JointTrajectory>("joint_trajectory", 100);
+    joint_command_publisher = nh_priv->advertise<trajectory_msgs::JointTrajectory>("joint_group_position_controller/command", 1);
 
     joint_state_publisher = nh->advertise<sensor_msgs::JointState>("joint_states", 1);
     //TODO : contact info publisher
     //contact_info_publisher = nh->advertise<champ_msgs::ContactsStamped>("foot_contacts", 1);
 
-    loop_timer =nh_priv->createTimer(ros::Duration(1/loop_rate), &Mintchoco1::controlLoop,this);
+    loop_timer =nh_priv->createTimer(ros::Duration(1/loop_rate), &Mintchoco1::controlLoop, this);
 
 }
 
@@ -25,16 +25,14 @@ Mintchoco1::~Mintchoco1()
 
 void Mintchoco1::controlLoop(const ros::TimerEvent& event)
 {
-    std::vector<double> target_joint_position;
-    std::vector<double> target_foot_position;
+  std::vector<float> target_joint_position;
     if (order == 0 || 5 || 6)
     {
       
-      locomotion_controller.stanceState(order);
+      target_joint_position = locomotion_controller.stanceState(order);
     }
-    kinematics_.solveGeometricInverseKinematics(target_joint_position);
 
-    //publishJoints(target_joint_position)
+    publishJoints(target_joint_position);
 }
 
 void Mintchoco1::msgCallback(const geometry_msgs::Twist::ConstPtr& msg)
@@ -86,7 +84,7 @@ void Mintchoco1::msgCallback(const geometry_msgs::Twist::ConstPtr& msg)
     base_control = false;
 }
 
-void Mintchoco1::publishJoints(float target_joint_position[12])
+void Mintchoco1::publishJoints(std::vector<float> target_joint_position)
 {
     trajectory_msgs::JointTrajectory joints_cmd_msg;
     joints_cmd_msg.header.stamp = ros::Time::now();
@@ -105,7 +103,7 @@ void Mintchoco1::publishJoints(float target_joint_position[12])
     {
         point.positions[i] = target_joint_position[i];
     }
-
+    ROS_INFO("%f,%f,%f",point.positions[0],point.positions[1],point.positions[2]);
     joints_cmd_msg.points.push_back(point);
     joint_command_publisher.publish(joints_cmd_msg);
 }

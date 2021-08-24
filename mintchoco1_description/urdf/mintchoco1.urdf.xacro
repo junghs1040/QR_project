@@ -2,13 +2,13 @@
 <robot name="mintchoco1" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Fix the base_link -->
-  <!--link name="world"/-->
+  <link name="world"/>
 
-  <!--joint name="fixed" type="fixed">
+  <joint name="fixed" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
      <origin xyz="0.0 0.0 0.005" rpy="0 0 0" />
-  </joint-->
+  </joint>
 
   <link name="base_link">
     <inertial>
@@ -277,7 +277,7 @@
     <child
       link="RF_link1" />
     <axis
-      xyz="-0.99999 0 0.005102" />
+      xyz="0.99999 0 0.005102" />
     <limit
       lower="-3.14"
       upper="3.14"
@@ -454,7 +454,7 @@
     <child
       link="LB_link1" />
     <axis
-      xyz="0.99995 0 -0.010204" />
+      xyz="-0.99995 0 -0.010204" />
     <limit
       lower="-3.14"
       upper="3.14"
@@ -631,7 +631,7 @@
     <child
       link="RB_link1" />
     <axis
-      xyz="0.99999 0 -0.005102" />
+      xyz="0.99999 0 0.005102" />
     <limit
       lower="-3.14"
       upper="3.14"
@@ -749,7 +749,7 @@
     <child
       link="RB_link3" />
     <axis
-      xyz="1 0.0017021 0" />
+      xyz="-1 0.0017021 0" />
     <limit
       lower="-3.14"
       upper="3.14"
