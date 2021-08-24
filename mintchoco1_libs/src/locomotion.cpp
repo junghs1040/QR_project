@@ -46,6 +46,9 @@ std::vector<float> Locomotion::stanceState(int order)
     {
         target_joint_position.push_back(RB[i]);
     }
-    ROS_INFO("%f,%f,%f", LF[0],LF[1],LF[2]);
+    ROS_INFO("LF : %f,%f,%f ", LF[0],LF[1],LF[2]);
+    ROS_INFO("LB : %f,%f,%f ", LB[0],LB[1],LB[2]);
+    ROS_INFO("RF : %f,%f,%f ", RF[0],RF[1],RF[2]);
+    ROS_INFO("RB : %f,%f,%f ", RB[0],RB[1],RB[2]);
     return target_joint_position;
 }

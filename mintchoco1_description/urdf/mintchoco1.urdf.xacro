@@ -336,7 +336,7 @@
     <child
       link="RF_link2" />
     <axis
-      xyz="-1 0 0" />
+      xyz="1 0 0" />
     <limit
       lower="-3.14"
       upper="3.14"
@@ -690,7 +690,7 @@
     <child
       link="RB_link2" />
     <axis
-      xyz="-1 0 0" />
+      xyz="1 0 0" />
     <limit
       lower="-3.14"
       upper="3.14"

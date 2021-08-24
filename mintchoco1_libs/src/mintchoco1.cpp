@@ -103,7 +103,7 @@ void Mintchoco1::publishJoints(std::vector<float> target_joint_position)
     {
         point.positions[i] = target_joint_position[i];
     }
-    ROS_INFO("%f,%f,%f",point.positions[0],point.positions[1],point.positions[2]);
+    
     joints_cmd_msg.points.push_back(point);
     joint_command_publisher.publish(joints_cmd_msg);
 }

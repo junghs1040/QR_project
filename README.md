@@ -23,6 +23,7 @@ $ roslaunch mintchoco1_gazebo mintchoco1_world.launch
 </code>
 </pre>
 
-![Screenshot from 2021-07-07 16-22-36](https://user-images.githubusercontent.com/19335771/124845945-bfdd2700-dfd2-11eb-81da-72bb4c58b4a7.png)
+
+![Screenshot from 2021-08-24 20-04-48](https://user-images.githubusercontent.com/19335771/130606137-4f68216e-bc7b-444d-89e0-167054f55bb3.png)
 
 
