@@ -76,12 +76,17 @@ void Mintchoco1::msgCallback(const geometry_msgs::Twist::ConstPtr& msg)
       ROS_INFO("go down");
       order = 6;
     }
-  if ( order = 0 || 5 || 6)
+  if ( order == 0 || 5 || 6)
   {
     base_control = true;
+    ROS_INFO("base_control = true");
   }
-  else 
+  if ( order == 1 || 2 || 3 || 4)
+  {
     base_control = false;
+    ROS_INFO("base_control = false");
+  }
+
 }
 
 void Mintchoco1::publishJoints(std::vector<float> target_joint_position)

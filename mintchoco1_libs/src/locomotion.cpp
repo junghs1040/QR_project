@@ -22,10 +22,18 @@ std::vector<float> Locomotion::stanceState(int order)
     }
     if(order == 5)
     {
+        LF = kinematics.solveGeometricInverseKinematics({0, 78.00, -320.0});
+        LB = kinematics.solveGeometricInverseKinematics({0, 78.00, -320.0});
+        RF = kinematics.solveGeometricInverseKinematics({0, 78.00, -320.0});
+        RB = kinematics.solveGeometricInverseKinematics({0, 78.00, -320.0});
         //TODO solve inversekinematics and find the go up state
     }
     if(order == 6)
     {
+        LF = kinematics.solveGeometricInverseKinematics({0, 78.00, -120.0});
+        LB = kinematics.solveGeometricInverseKinematics({0, 78.00, -120.0});
+        RF = kinematics.solveGeometricInverseKinematics({0, 78.00, -120.0});
+        RB = kinematics.solveGeometricInverseKinematics({0, 78.00, -120.0});
         //TODO solve inversekinematics and find the go down state
     }
     //TODO - Call the trajectory function for each leg
