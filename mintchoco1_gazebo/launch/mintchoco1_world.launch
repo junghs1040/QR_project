@@ -10,7 +10,7 @@
     <arg name="gazebo_world"       default="$(find mintchoco1_gazebo)/worlds/mintchoco1.world" />
     <arg name="world_init_x"       default="0.0" />
     <arg name="world_init_y"       default="0.0" />
-    <arg name="world_init_z"       default="1.0" />
+    <arg name="world_init_z"       default="0.25" />
     <arg name="world_init_heading" default="0.0" />
 
     <!-- this should be only called once on multi-robot simulation -->
@@ -29,9 +29,10 @@
   <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
     args="-urdf -model mintchoco1 -param robot_description 
-    -x $(arg world_init_x) -y $(arg world_init_y) -z $(arg world_init_z) -Y $(arg world_init_heading)"/>
+    -x $(arg world_init_x) -y $(arg world_init_y) -z $(arg world_init_z) -Y $(arg world_init_heading) -J LF_joint1 0.0 -J LF_joint2 0.468346 -J LF_joint3 -0.475227 -J LB_joint1 0.0 -J LB_joint2 0.423752 -J LB_joint3 -0.473828 -J RF_joint1 0.0 -J RF_joint2 0.468346 -J RF_joint3 -0.473828 -J RB_joint1 0.0 -J RB_joint2 0.423752 -J RB_joint3 -0.475227"/>
 
   <!-- ros_control mintchoco1 launch file -->
   <include file="$(find mintchoco1_controller)/launch/mintchoco1_control.launch" />
+  <node pkg="mintchoco1_libs" type="mintchoco1_node" name="mintchoco1" output="screen"/>
 
 </launch>

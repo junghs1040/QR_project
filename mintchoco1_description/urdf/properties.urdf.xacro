@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:property name="link1_mass" value="0.250" />
+    <xacro:property name="link1_x_length" value="0.05" />
+    <xacro:property name="link1_y_length" value="0.058" />
+    <xacro:property name="link1_z_length" value="0.0665" />
+
+    <xacro:property name="link2_mass" value="0.125" />
+    <xacro:property name="link2_x_length" value="0.034" />
+    <xacro:property name="link2_y_length" value="0.229" />
+    <xacro:property name="link2_z_length" value="0.0665" />
+
+    <xacro:property name="link3_mass" value="0.125" />
+    <xacro:property name="link3_x_length" value="0.02" />
+    <xacro:property name="link3_y_length" value="0.02" />
+    <xacro:property name="link3_z_length" value="0.205" />
+
+    <xacro:property name="base_mass" value="2.0" />
+    <xacro:property name="base_x_length" value="0.3" />
+    <xacro:property name="base_y_length" value="0.17" />
+    <xacro:property name="base_z_length" value="0.066" />
+</robot>

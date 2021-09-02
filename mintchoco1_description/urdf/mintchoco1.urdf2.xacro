@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="mintchoco1" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find mintchoco1_description)/urdf/properties.urdf.xacro" />
+  <!-- Fix the base_link -->
+  <link name="world"/>
+
+  <joint name="planar" type="planar">
+    <parent link="world"/>
+    <child link="base_link"/>
+     <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00035091 -1.3484E-17 -0.0043115"
+        rpy="0 0 0" />
+      <mass
+        value="${base_mass}" />
+            <inertia ixx="${(1/12) * base_mass * (base_y_length * base_y_length + base_z_length * base_z_length)}" ixy="0.0" ixz="0.0"
+                     iyy="${(1/12) * base_mass * (base_x_length * base_x_length + base_z_length * base_z_length)}" iyz="0.0"
+                     izz="${(1/12) * base_mass * (base_x_length * base_x_length + base_y_length * base_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link
+    name="LF_link1">
+    <inertial>
+      <origin
+        xyz="-0.024455 0.035154 0.00033392"
+        rpy="0 0 0" />
+      <mass
+        value="${link1_mass}" />
+                <inertia ixx="${(1/12) * link1_mass * (link1_y_length * link1_y_length + link1_z_length * link1_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link1_mass * (link1_x_length * link1_x_length + link1_z_length * link1_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link1_mass * (link1_x_length * link1_x_length + link1_y_length * link1_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LF_link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LF_link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LF_joint1"
+    type="revolute">
+    <origin
+      xyz="0.1515 0.04025 -0.00175"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LF_link1" />
+    <axis
+      xyz="-0.99995 0 0.010204" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="LF_link2">
+    <inertial>
+      <origin
+        xyz="0.00096259 -0.097555 -0.0025994"
+        rpy="0 0 0" />
+      <mass
+        value="${link2_mass}" />
+                <inertia ixx="${(1/12) * link2_mass * (link2_y_length * link2_y_length + link2_z_length * link2_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link2_mass * (link2_x_length * link2_x_length + link2_z_length * link2_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link2_mass * (link2_x_length * link2_x_length + link2_y_length * link2_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LF_link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LF_link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LF_joint2"
+    type="revolute">
+    <origin
+      xyz="-0.024 0.079 0.0125"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="LF_link1" />
+    <child
+      link="LF_link2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="LF_link3">
+    <inertial>
+      <origin
+        xyz="0.021928 4.0475E-05 -0.1015"
+        rpy="0 0 0" />
+      <mass
+        value="${link3_mass}" />
+                <inertia ixx="${(1/12) * link3_mass * (link3_y_length * link3_y_length + link3_z_length * link3_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link3_mass * (link3_x_length * link3_x_length + link3_z_length * link3_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link3_mass * (link3_x_length * link3_x_length + link3_y_length * link3_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LF_link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LF_link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LF_joint3"
+    type="revolute">
+    <origin
+      xyz="-0.022 -0.18525 -0.03025"
+      rpy="0 0 0" />
+    <parent
+      link="LF_link2" />
+    <child
+      link="LF_link3" />
+    <axis
+      xyz="-1 -0.0017021 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="RF_link1">
+    <inertial>
+      <origin
+        xyz="-0.024443 -0.035154 0.00032454"
+        rpy="0 0 0" />
+      <mass
+        value="${link1_mass}" />
+                <inertia ixx="${(1/12) * link1_mass * (link1_y_length * link1_y_length + link1_z_length * link1_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link1_mass * (link1_x_length * link1_x_length + link1_z_length * link1_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link1_mass * (link1_x_length * link1_x_length + link1_y_length * link1_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RF_link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RF_link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_joint1"
+    type="revolute">
+    <origin
+      xyz="0.1515 -0.04025 -0.00175"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RF_link1" />
+    <axis
+      xyz="0.99999 0 0.005102" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="RF_link2">
+    <inertial>
+      <origin
+        xyz="-0.00096259 -0.097559 -0.0025994"
+        rpy="0 0 0" />
+      <mass
+        value="${link2_mass}" />
+                <inertia ixx="${(1/12) * link2_mass * (link2_y_length * link2_y_length + link2_z_length * link2_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link2_mass * (link2_x_length * link2_x_length + link2_z_length * link2_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link2_mass * (link2_x_length * link2_x_length + link2_y_length * link2_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RF_link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RF_link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_joint2"
+    type="revolute">
+    <origin
+      xyz="-0.024 -0.079 0.0125"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="RF_link1" />
+    <child
+      link="RF_link2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="RF_link3">
+    <inertial>
+      <origin
+        xyz="-0.021928 -4.0475E-05 -0.1015"
+        rpy="0 0 0" />
+      <mass
+        value="${link3_mass}" />
+                <inertia ixx="${(1/12) * link3_mass * (link3_y_length * link3_y_length + link3_z_length * link3_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link3_mass * (link3_x_length * link3_x_length + link3_z_length * link3_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link3_mass * (link3_x_length * link3_x_length + link3_y_length * link3_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RF_link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RF_link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_joint3"
+    type="revolute">
+    <origin
+      xyz="0.022 -0.18525 -0.03025"
+      rpy="0 0 0" />
+    <parent
+      link="RF_link2" />
+    <child
+      link="RF_link3" />
+    <axis
+      xyz="-1 -0.0017021 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="LB_link1">
+    <inertial>
+      <origin
+        xyz="-0.024455 0.035154 0.00033392"
+        rpy="0 0 0" />
+      <mass
+        value="${link1_mass}" />
+                <inertia ixx="${(1/12) * link1_mass * (link1_y_length * link1_y_length + link1_z_length * link1_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link1_mass * (link1_x_length * link1_x_length + link1_z_length * link1_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link1_mass * (link1_x_length * link1_x_length + link1_y_length * link1_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LB_link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LB_link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LB_joint1"
+    type="revolute">
+    <origin
+      xyz="-0.1025 0.04025 -0.00175"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LB_link1" />
+    <axis
+      xyz="-0.99995 0 -0.010204" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="LB_link2">
+    <inertial>
+      <origin
+        xyz="0.00096259 -0.097555 -0.0025994"
+        rpy="0 0 0" />
+      <mass
+        value="${link2_mass}" />
+                <inertia ixx="${(1/12) * link2_mass * (link2_y_length * link2_y_length + link2_z_length * link2_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link2_mass * (link2_x_length * link2_x_length + link2_z_length * link2_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link2_mass * (link2_x_length * link2_x_length + link2_y_length * link2_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LB_link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LB_link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LB_joint2"
+    type="revolute">
+    <origin
+      xyz="-0.024 0.079 0.0125"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="LB_link1" />
+    <child
+      link="LB_link2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="LB_link3">
+    <inertial>
+      <origin
+        xyz="0.021928 3.6546E-05 -0.1015"
+        rpy="0 0 0" />
+      <mass
+        value="${link3_mass}" />
+                <inertia ixx="${(1/12) * link3_mass * (link3_y_length * link3_y_length + link3_z_length * link3_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link3_mass * (link3_x_length * link3_x_length + link3_z_length * link3_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link3_mass * (link3_x_length * link3_x_length + link3_y_length * link3_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LB_link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/LB_link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LB_joint3"
+    type="revolute">
+    <origin
+      xyz="-0.022 -0.18525 -0.03025"
+      rpy="0 0 0" />
+    <parent
+      link="LB_link2" />
+    <child
+      link="LB_link3" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="RB_link1">
+    <inertial>
+      <origin
+        xyz="-0.024443 -0.035154 0.00032454"
+        rpy="0 0 0" />
+      <mass
+        value="${link1_mass}" />
+                <inertia ixx="${(1/12) * link1_mass * (link1_y_length * link1_y_length + link1_z_length * link1_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link1_mass * (link1_x_length * link1_x_length + link1_z_length * link1_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link1_mass * (link1_x_length * link1_x_length + link1_y_length * link1_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RB_link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RB_link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RB_joint1"
+    type="revolute">
+    <origin
+      xyz="-0.1025 -0.04025 -0.00175"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="RB_link1" />
+    <axis
+      xyz="0.99999 0 0.005102" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="RB_link2">
+    <inertial>
+      <origin
+        xyz="-0.00096259 -0.097559 -0.0025994"
+        rpy="0 0 0" />
+      <mass
+        value="${link2_mass}" />
+                <inertia ixx="${(1/12) * link2_mass * (link2_y_length * link2_y_length + link2_z_length * link2_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link2_mass * (link2_x_length * link2_x_length + link2_z_length * link2_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link2_mass * (link2_x_length * link2_x_length + link2_y_length * link2_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RB_link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RB_link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RB_joint2"
+    type="revolute">
+    <origin
+      xyz="-0.024 -0.079 0.0125"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="RB_link1" />
+    <child
+      link="RB_link2" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+  <link
+    name="RB_link3">
+    <inertial>
+      <origin
+        xyz="-0.021928 -4.0475E-05 -0.1015"
+        rpy="0 0 0" />
+      <mass
+        value="${link3_mass}" />
+                <inertia ixx="${(1/12) * link3_mass * (link3_y_length * link3_y_length + link3_z_length * link3_z_length)}" ixy="0.0" ixz="0.0"
+                         iyy="${(1/12) * link3_mass * (link3_x_length * link3_x_length + link3_z_length * link3_z_length)}" iyz="0.0"
+                         izz="${(1/12) * link3_mass * (link3_x_length * link3_x_length + link3_y_length * link3_y_length)}" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RB_link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mintchoco1_description/meshes/RB_link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RB_joint3"
+    type="revolute">
+    <origin
+      xyz="0.022 -0.18525 -0.03025"
+      rpy="0 0 0" />
+    <parent
+      link="RB_link2" />
+    <child
+      link="RB_link3" />
+    <axis
+      xyz="-1 0.0017021 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4.8" />
+    <!--dynamics damping ="0.7"/-->
+  </joint>
+</robot>

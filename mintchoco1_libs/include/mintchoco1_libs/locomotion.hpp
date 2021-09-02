@@ -17,6 +17,7 @@ class Locomotion
         Locomotion();       // constructor
         ~Locomotion();      // destructor
         std::vector<float> stanceState(int order);
+        std::vector<float> walkingTrot(int order);
 
     private:
         Kinematics kinematics;

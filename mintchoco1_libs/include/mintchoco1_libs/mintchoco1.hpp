@@ -39,7 +39,7 @@ class Mintchoco1
         Kinematics kinematics_;
         TrajectoryGenerator trajectory_generator_;
         Locomotion locomotion_controller;
-        int order = 0;
+        int order;
         bool base_control = false;
         // stop - 0 , go saright - 1, go back - 2, go right -3, go left - 4, go up - 5, go down - 6
 

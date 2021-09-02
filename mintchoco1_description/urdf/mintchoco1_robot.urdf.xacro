@@ -11,6 +11,6 @@
   <xacro:include filename="$(find mintchoco1_description)/urdf/mintchoco1.transmission.xacro" />
 
   <!-- Import URDF -->
-  <xacro:include filename="$(find mintchoco1_description)/urdf/mintchoco1.urdf.xacro" />
+  <xacro:include filename="$(find mintchoco1_description)/urdf/mintchoco1.urdf2.xacro" />
 
 </robot>

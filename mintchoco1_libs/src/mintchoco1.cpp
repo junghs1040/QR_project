@@ -4,6 +4,7 @@
 Mintchoco1::Mintchoco1(ros::NodeHandle *nh, ros::NodeHandle *nh_priv)
 {
     double loop_rate = 100.0;
+    order = 0;
     std::string joint_control_topic = "joint_group_position_controller/command";
     //*number received by controller check and choice the walking pattern
     //*store the trajectory information and publish that information
@@ -17,6 +18,10 @@ Mintchoco1::Mintchoco1(ros::NodeHandle *nh, ros::NodeHandle *nh_priv)
     //contact_info_publisher = nh->advertise<champ_msgs::ContactsStamped>("foot_contacts", 1);
 
     loop_timer =nh_priv->createTimer(ros::Duration(1/loop_rate), &Mintchoco1::controlLoop, this);
+    //if (order ==1)
+    //{
+    //  loop_timer =nh_priv->createTimer(ros::Duration(3.0), &Mintchoco1::controlLoop, this);
+    //}
 
 }
 
@@ -31,8 +36,13 @@ void Mintchoco1::controlLoop(const ros::TimerEvent& event)
       
       target_joint_position = locomotion_controller.stanceState(order);
     }
+    if (order == 1)
+    {
+      target_joint_position = locomotion_controller.walkingTrot(order);
+    }
 
     publishJoints(target_joint_position);
+    ROS_INFO("ok");
 }
 
 void Mintchoco1::msgCallback(const geometry_msgs::Twist::ConstPtr& msg)
