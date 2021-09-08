@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot name="mintchoco1" xmlns:xacro="http://ros.org/wiki/xacro">
+
   <!-- ros_control plugin -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -7,6 +8,29 @@
       <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
+
+  <!-- imu plugin -->
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+
 <!-- Base_link : Black -->
   <gazebo reference="base_link">
     <kp>1000000.0</kp>
@@ -151,5 +175,36 @@
     <fdir1>0 0 0</fdir1>
     <material>Gazebo/DarkGrey</material>
   </gazebo>
+
+  <xacro:macro name="RefJoint" params="ref">
+    <gazebo reference="${ref}">
+      <provideFeedback>true</provideFeedback>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="RefJoint" params="ref">
+    <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>100.0</updateRate>
+        <topicName>ft_sensor_topic</topicName>
+        <jointName>${ref}</jointName>
+    </plugin>
+  </xacro:macro>
+
+  <RefJoint ref="LF_joint1"/>
+  <RefJoint ref="LF_joint2"/>
+  <RefJoint ref="LF_joint3"/>
+
+  <RefJoint ref="LB_joint1"/>
+  <RefJoint ref="LB_joint2"/>
+  <RefJoint ref="LB_joint3"/>
+
+  <RefJoint ref="RF_joint1"/>
+  <RefJoint ref="RF_joint2"/>
+  <RefJoint ref="RF_joint3"/>
+
+  <RefJoint ref="RB_joint1"/>
+  <RefJoint ref="RB_joint2"/>
+  <RefJoint ref="RB_joint3"/>
+
 
 </robot>

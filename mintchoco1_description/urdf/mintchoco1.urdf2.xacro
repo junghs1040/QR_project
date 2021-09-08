@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="mintchoco1" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find mintchoco1_description)/urdf/properties.urdf.xacro" />
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="imu_link"/>
+
+
   <!-- Fix the base_link -->
   <link name="world"/>
 

@@ -22,7 +22,12 @@ $ roslaunch mintchoco1_description display.launch
 $ roslaunch mintchoco1_gazebo mintchoco1_world.launch
 </code>
 </pre>
-
+#### load the mintchoco1_keyboard controller
+<pre>
+<code>
+$ rosrun mintchoco1_teleop mintchoco1_keyboard
+</code>
+</pre>
 
 ![Screenshot from 2021-08-24 20-04-48](https://user-images.githubusercontent.com/19335771/130606137-4f68216e-bc7b-444d-89e0-167054f55bb3.png)
 
