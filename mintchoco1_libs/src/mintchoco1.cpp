@@ -9,7 +9,7 @@ Mintchoco1::Mintchoco1(ros::NodeHandle *nh, ros::NodeHandle *nh_priv)
     //*number received by controller check and choice the walking pattern
     //*store the trajectory information and publish that information
     
-    teleop_input_subscriber = nh->subscribe("cmd_vel", 1000, &Mintchoco1::msgCallback, this);
+    teleop_input_subscriber = nh->subscribe("mintchoco1_msg", 1000, &Mintchoco1::msgCallback, this);
     //Joint trajectory publisher to  Gazebo
     joint_command_publisher = nh_priv->advertise<trajectory_msgs::JointTrajectory>("joint_group_position_controller/command", 1);
 
@@ -42,15 +42,16 @@ void Mintchoco1::controlLoop(const ros::TimerEvent& event)
     }
 
     publishJoints(target_joint_position);
-    ROS_INFO("ok");
+    //ROS_INFO("ok");
 }
 
-void Mintchoco1::msgCallback(const geometry_msgs::Twist::ConstPtr& msg)
+void Mintchoco1::msgCallback(const mintchoco1_msgs::Mintchoco1Control::ConstPtr& msg)
 {
-  float x = msg->linear.x;
-  float y = msg->linear.y;
-  float z = msg->linear.z;
- 
+  float x = msg->linear[0];
+  float y = msg->linear[1];
+  float z = msg->linear[2];
+  ROS_INFO("hh");
+  ROS_INFO("%f,%f,%f", x,y,z);
   if ( x > 0 && y == 0 && z == 0 )
     {
       ROS_INFO("go straight");

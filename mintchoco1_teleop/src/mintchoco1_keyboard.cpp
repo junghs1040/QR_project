@@ -1,5 +1,5 @@
 #include <ros/ros.h>
-#include <geometry_msgs/Twist.h>
+#include "mintchoco1_msgs/Mintchoco1Control.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -10,15 +10,15 @@
 // Map for movement keys
 std::map<char, std::vector<float>> moveBindings
 {
-  {'w', {1, 0, 0, 0, 0, 0}},  // GO
-  {'a', {0,-1, 0, 0, 0, 0}}, // LEFT
-  {'s', {-1, 0, 0, 0, 0, 0}},  // BACK
-  {'d', { 0,1, 0, 0, 0, 0}}, // RIGHT
+  {'w', { 1,  0,  0, 0, 0, 0}},  // GO
+  {'a', { 0, -1,  0, 0, 0, 0}}, // LEFT
+  {'s', {-1,  0,  0, 0, 0, 0}},  // BACK
+  {'d', { 0,  1,  0, 0, 0, 0}}, // RIGHT
 
-  {'t', { 0,  0,  1, 0,  0,  0}},  // UP
-  {'b', { 0,  0, -1, 0,  0,  0}},  // DOWN
+  {'t', { 0,  0,  1,  0,  0,  0}},  // UP
+  {'b', { 0,  0, -1,  0,  0,  0}},  // DOWN
 
-  {',', { 0,  0, 0, - 1,  0,  0}},  // TURN COUNTER CLOCKWISE  - X-axis
+  {',', { 0,  0, 0,  -1,  0,  0}},  // TURN COUNTER CLOCKWISE  - X-axis
   {'.', { 0,  0, 0,   1,  0,  0}},  // TURN CLOCKWISE - X-axis
 
   {'<', { 0,  0,  0,  0, -1,  0}},  // TURN COUNTER CLOCKWISE  - Y-axis
@@ -33,7 +33,7 @@ std::map<char, std::vector<float>> moveBindings
 // Map for speed keys
 std::map<char, std::vector<float>> gaitControlBindings
 {
-  {'q', {1.1, 1.1}},
+  {'u', {1}},  // walking gait
   {'z', {0.9, 0.9}},
   {'w', {1.1, 1}},
   {'x', {0.9, 1}},
@@ -51,9 +51,9 @@ Moving around :
            
 Turn around :
 ---------------------------
-   U    I    O
-   J    K    L
-   M    <    >
+   X-axis ["." = CW "," = CCW]
+   Y-axis [">" = CW "<" = CCW]
+   Z-axis ["q" = CW "e" = CCW]
 t : up (+z)
 b : down (-z)
 anything else : stop
@@ -103,10 +103,10 @@ int main(int argc, char** argv)
   ros::NodeHandle nh;
 
   // Init cmd_vel publisher
-  ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1);
+  ros::Publisher pub = nh.advertise<mintchoco1_msgs::Mintchoco1Control>("mintchoco1_msg", 1);
 
-  // Create Twist message
-  geometry_msgs::Twist twist;
+
+  mintchoco1_msgs::Mintchoco1Control mincho;
 
   printf("%s", msg);
   printf("\rCurrent: speed %f\tturn %f | Awaiting command...\r", speed, turn);
@@ -119,6 +119,7 @@ int main(int argc, char** argv)
     // If the key corresponds to a key in moveBindings
     if (moveBindings.count(key) == 1)
     {
+
       // Grab the direction data
       x = moveBindings[key][0];
       y = moveBindings[key][1];
@@ -126,6 +127,7 @@ int main(int argc, char** argv)
       x_t = moveBindings[key][3];
       y_t = moveBindings[key][4];
       z_t = moveBindings[key][5];
+
 
       printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
     }
@@ -159,18 +161,12 @@ int main(int argc, char** argv)
 
       printf("\rCurrent: speed %f\tturn %f | Invalid command! %c", speed, turn, key);
     }
-
+    ROS_INFO("%f, %f, %f", x,y,z);
     // Update the Twist message
-    twist.linear.x = x ;
-    twist.linear.y = y ;
-    twist.linear.z = z ;
-
-    twist.angular.x = x_t;
-    twist.angular.y = y_t;
-    twist.angular.z = z_t;
-
+    mincho.linear={x,y,z};
+    mincho.angular={x_t,y_t,z_t};
     // Publish it and resolve any remaining callbacks
-    pub.publish(twist);
+    pub.publish(mincho);
     ros::spinOnce();
   }
 

@@ -5,9 +5,11 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
   roscpp
   std_msgs
+  mintchoco1_msgs
 )
 
 find_package(Eigen3 REQUIRED)
+
 
 catkin_package(
   INCLUDE_DIRS include

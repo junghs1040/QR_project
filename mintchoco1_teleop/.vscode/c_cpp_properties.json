@@ -4,7 +4,8 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/opt/ros/melodic/include"
+                "/opt/ros/melodic/include",
+                "~/seok2_ws/src/mintchoco/mintchoco1_msgs"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

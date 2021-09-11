@@ -8,7 +8,7 @@
 #include "urdf/model.h"
 #include "std_msgs/String.h"
 #include <iostream>
-#include <geometry_msgs/Twist.h>
+#include "mintchoco1_msgs/Mintchoco1Control.h"
 #include <sensor_msgs/JointState.h>
 #include <trajectory_msgs/JointTrajectory.h>
 #include <trajectory_msgs/JointTrajectoryPoint.h>
@@ -21,7 +21,7 @@ class Mintchoco1
         ~Mintchoco1();      // destructor
         void publishJoints(std::vector<float> target_joint_position);
         void controlLoop(const ros::TimerEvent& event);
-        void msgCallback(const geometry_msgs::Twist::ConstPtr& msg);
+        void msgCallback(const mintchoco1_msgs::Mintchoco1Control::ConstPtr& msg);
         std::vector<double> target_joint_position;
         std::vector<std::string> joint_names_ = {"LF_joint1","LF_joint2","LF_joint3", 
                                                  "LB_joint1","LB_joint2","LB_joint3",
