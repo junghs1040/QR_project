@@ -43,138 +43,44 @@
     <material>Gazebo/DarkGrey</material>
   </gazebo>
 
-<!-- Link1 : Black -->
-  <gazebo reference="LF_link1">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
+  <xacro:macro name="RefLink1" params="ref">
+    <gazebo reference="${ref}">
+      <kp>1000000.0</kp>
+      <kd>50.0</kd>
+      <mu1>0.1</mu1>
+      <mu2>0.1</mu2>
+      <maxVel>1.0</maxVel>
+      <minDepth>0.001</minDepth>
+      <fdir1>0 0 0</fdir1>
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+  </xacro:macro>
 
-  <gazebo reference="LB_link1">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
+  <xacro:macro name="RefLink2" params="ref">
+    <gazebo reference="${ref}">
+      <kp>1000000.0</kp>
+      <kd>50.0</kd>
+      <mu1>0.1</mu1>
+      <mu2>0.1</mu2>
+      <maxVel>1.0</maxVel>
+      <minDepth>0.001</minDepth>
+      <fdir1>0 0 0</fdir1>
+      <material>Gazebo/RedBright</material>
+    </gazebo>
+  </xacro:macro>
 
-  <gazebo reference="RF_link1">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-
-  <gazebo reference="RB_link1">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-<!-- Link2 : Red -->
-  <gazebo reference="LF_link2">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/RedBright</material>
-  </gazebo>
-
-  <gazebo reference="LB_link2">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/RedBright</material>
-  </gazebo>
-
-  <gazebo reference="RF_link2">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.1</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/RedBright</material>
-  </gazebo>
-
-  <gazebo reference="RB_link2">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/RedBright</material>
-  </gazebo>
-<!-- Link3 : DarkGrey -->
-  <gazebo reference="LF_link3">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-
-  <gazebo reference="LB_link3">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-
-  <gazebo reference="RF_link3">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
-
-  <gazebo reference="RB_link3">
-    <kp>1000000.0</kp>
-    <kd>50.0</kd>
-    <mu1>0.1</mu1>
-    <mu2>0.1</mu2>
-    <maxVel>1.0</maxVel>
-    <minDepth>0.001</minDepth>
-    <fdir1>0 0 0</fdir1>
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
+  <xacro:macro name="RefLink3" params="ref">
+    <gazebo reference="${ref}">
+      <kp>1000000.0</kp>
+      <kd>50.0</kd>
+      <mu1>0.1</mu1>
+      <mu2>0.1</mu2>
+      <maxVel>1.0</maxVel>
+      <minDepth>0.001</minDepth>
+      <fdir1>0 0 0</fdir1>
+      <material>Gazebo/DarkGrey</material>
+    </gazebo>
+  </xacro:macro>
 
   <xacro:macro name="RefJoint" params="ref">
     <gazebo reference="${ref}">
@@ -189,6 +95,21 @@
         <jointName>${ref}</jointName>
     </plugin>
   </xacro:macro>
+
+  <RefLink1 ref="LF_link1"/>
+  <RefLink1 ref="LB_link1"/>
+  <RefLink1 ref="RF_link1"/>
+  <RefLink1 ref="RB_link1"/>
+
+  <RefLink2 ref="LF_link2"/>
+  <RefLink2 ref="LB_link2"/>
+  <RefLink2 ref="RF_link2"/>
+  <RefLink2 ref="RB_link2"/>
+
+  <RefLink3 ref="LF_link3"/>
+  <RefLink3 ref="LB_link3"/>
+  <RefLink3 ref="RF_link3"/>
+  <RefLink3 ref="RB_link3"/>
 
   <RefJoint ref="LF_joint1"/>
   <RefJoint ref="LF_joint2"/>

@@ -37,8 +37,7 @@ std::map<char, std::vector<float>> gaitControlBindings
   {'z', {0.9, 0.9}},
   {'w', {1.1, 1}},
   {'x', {0.9, 1}},
-  {'e', {1, 1.1}},
-  {'c', {1, 0.9}}
+
 };
 
 // Reminder message
@@ -62,8 +61,8 @@ CTRL-C to quit
 )";
 
 // Init variables
-float speed(0.5); // Linear velocity (m/s)
-float turn(1.0); // Angular velocity (rad/s)
+float num(0.0); // Gait Mode 
+//float turn(1.0); // Angular velocity (rad/s)
 float x(0), y(0), z(0), x_t(0), y_t(0), z_t(0); // Forward/backward/neutral direction vars
 char key(' ');
 
@@ -109,7 +108,7 @@ int main(int argc, char** argv)
   mintchoco1_msgs::Mintchoco1Control mincho;
 
   printf("%s", msg);
-  printf("\rCurrent: speed %f\tturn %f | Awaiting command...\r", speed, turn);
+  //printf("\rCurrent: speed %f\tturn %f | Awaiting command...\r", speed, turn);
 
   while(true){
 
@@ -129,19 +128,18 @@ int main(int argc, char** argv)
       z_t = moveBindings[key][5];
 
 
-      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
+      printf("\n Last command: %c   ", key);
     }
 
     // Otherwise if it corresponds to a key in speedBindings
-    /* else if (gaitControlBindings.count(key) == 1) //gait
+     else if (gaitControlBindings.count(key) == 1) //gait
     {
       // Grab the speed data
-      speed = speed * gaitControlBindings[key][0];
-      turn = turn * gaitControlBindings[key][1];
+      num = gaitControlBindings[key][0];
 
-      printf("\rCurrent: speed %f\tturn %f | Last command: %c   ", speed, turn, key);
+      printf("\n Gait num %f | Last command: %c   ", num, key);
     }
-    */
+    
     // Otherwise, set the robot to stop
     else
     {
@@ -159,12 +157,13 @@ int main(int argc, char** argv)
         break;
       }
 
-      printf("\rCurrent: speed %f\tturn %f | Invalid command! %c", speed, turn, key);
+      printf("\n Invalid command! %c", key);
     }
     ROS_INFO("%f, %f, %f", x,y,z);
     // Update the Twist message
     mincho.linear={x,y,z};
     mincho.angular={x_t,y_t,z_t};
+    mincho.control_num = {num};
     // Publish it and resolve any remaining callbacks
     pub.publish(mincho);
     ros::spinOnce();

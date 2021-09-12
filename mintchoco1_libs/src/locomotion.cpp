@@ -4,7 +4,7 @@ Locomotion::Locomotion()
 {}
 Locomotion::~Locomotion()
 {}
-std::vector<float> Locomotion::stanceState(int order)
+std::vector<float> Locomotion::stanceState(int order, int height_order)
 {
     std::vector <float> target_joint_position;
     std::vector <float> LF;

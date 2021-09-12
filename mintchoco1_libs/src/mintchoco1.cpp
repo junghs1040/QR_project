@@ -34,7 +34,7 @@ void Mintchoco1::controlLoop(const ros::TimerEvent& event)
     if (order == 0 || 5 || 6)
     {
       
-      target_joint_position = locomotion_controller.stanceState(order);
+      target_joint_position = locomotion_controller.stanceState(order, height_order);
     }
     if (order == 1)
     {
