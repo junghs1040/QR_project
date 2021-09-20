@@ -18,9 +18,11 @@ class Locomotion
         ~Locomotion();      // destructor
         std::vector<float> stanceState(int order, int height_order);
         std::vector<float> walkingTrot(int order);
+    
 
     private:
         Kinematics kinematics;
+        float z_position;
 
 
 

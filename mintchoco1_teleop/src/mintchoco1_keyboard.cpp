@@ -128,7 +128,7 @@ int main(int argc, char** argv)
       z_t = moveBindings[key][5];
 
 
-      printf("\n Last command: %c   ", key);
+      printf("\rLast command: %c   ", key);
     }
 
     // Otherwise if it corresponds to a key in speedBindings
@@ -137,7 +137,7 @@ int main(int argc, char** argv)
       // Grab the speed data
       num = gaitControlBindings[key][0];
 
-      printf("\n Gait num %f | Last command: %c   ", num, key);
+      printf("\rGait num %f | Last command: %c   ", num, key);
     }
     
     // Otherwise, set the robot to stop
@@ -157,7 +157,7 @@ int main(int argc, char** argv)
         break;
       }
 
-      printf("\n Invalid command! %c", key);
+      printf("\rInvalid command! %c", key);
     }
     ROS_INFO("%f, %f, %f", x,y,z);
     // Update the Twist message

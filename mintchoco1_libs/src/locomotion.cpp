@@ -14,29 +14,31 @@ std::vector<float> Locomotion::stanceState(int order, int height_order)
 
     if(order == 0)
     {
-        LF = kinematics.solveGeometricInverseKinematics({10, 78.00, -215.7});
-        LB = kinematics.solveGeometricInverseKinematics({0, 78.00, -215.7});
-        RF = kinematics.solveGeometricInverseKinematics({10, 78.00, -215.7});
-        RB = kinematics.solveGeometricInverseKinematics({0, 78.00, -215.7});
-       //TODO solve inversekinematics and find the standard state at each legs
+        z_position =-215.0;
     }
     if(order == 5)
     {
-        LF = kinematics.solveGeometricInverseKinematics({10, 78.00, -320.0});
-        LB = kinematics.solveGeometricInverseKinematics({0, 78.00, -320.0});
-        RF = kinematics.solveGeometricInverseKinematics({10, 78.00, -320.0});
-        RB = kinematics.solveGeometricInverseKinematics({0, 78.00, -320.0});
-        //TODO solve inversekinematics and find the go up state
+        z_position -= 1.0;
+        if (z_position <= -320)
+        {
+            z_position = -320;
+        }
     }
     if(order == 6)
     {
-        LF = kinematics.solveGeometricInverseKinematics({10, 78.00, -120.0});
-        LB = kinematics.solveGeometricInverseKinematics({0, 78.00, -120.0});
-        RF = kinematics.solveGeometricInverseKinematics({10, 78.00, -120.0});
-        RB = kinematics.solveGeometricInverseKinematics({0, 78.00, -120.0});
-        //TODO solve inversekinematics and find the go down state
+        z_position += 1.0;
+        if (z_position >= -120)
+        {
+            z_position = -120;
+        }
     }
     //TODO - Call the trajectory function for each leg
+
+
+    LF = kinematics.solveGeometricInverseKinematics({10, 78.00, z_position});
+    LB = kinematics.solveGeometricInverseKinematics({0, 78.00, z_position});
+    RF = kinematics.solveGeometricInverseKinematics({10, 78.00, z_position});
+    RB = kinematics.solveGeometricInverseKinematics({0, 78.00, z_position});
 
     for (int i =0; i<3; i++)
     {
