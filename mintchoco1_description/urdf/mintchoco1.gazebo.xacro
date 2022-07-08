@@ -9,6 +9,7 @@
     </plugin>
   </gazebo>
 
+
   <!-- imu plugin -->
   <gazebo reference="imu_link">
     <gravity>true</gravity>
@@ -89,11 +90,16 @@
   </xacro:macro>
 
   <xacro:macro name="RefJoint" params="ref">
-    <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+    <gazebo reference="${ref}">
+      <provideFeedback>true</provideFeedback>
+    </gazebo>
+    <gazebo>
+      <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
         <updateRate>100.0</updateRate>
-        <topicName>ft_sensor_topic</topicName>
+        <topicName>${ref}_ft_sensor_topic</topicName>
         <jointName>${ref}</jointName>
-    </plugin>
+      </plugin>
+    </gazebo>
   </xacro:macro>
 
   <RefLink1 ref="LF_link1"/>

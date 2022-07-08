@@ -109,6 +109,9 @@
       upper="3.14"
       effort="10"
       velocity="4.8" />
+    <sensor name="force_torque" type="force_torque">
+        <update_rate>30</update_rate>
+    </sensor>
     <!--dynamics damping ="0.7"/-->
   </joint>
   <link
